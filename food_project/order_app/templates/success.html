@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmed</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 80px; background: #f4f4f9; }
+        .box { background: white; display: inline-block; padding: 40px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1 style="color: #28a745;">✔ Order Placed Successfully!</h1>
+        <p>Thank you, <b>{{ username }}</b>!</p>
+        <p><b>Amount Paid:</b> ₹{{ total }} via {{ payment }}</p>
+        <p><b>Delivering to:</b> {{ address }}</p>
+        <br>
+        <a href="{% url 'menu' %}?category=veg" style="background: #ff5722; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Order Again</a>
+    </div>
+</body>
+</html>

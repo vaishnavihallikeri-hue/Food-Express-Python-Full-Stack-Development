@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Address & Payment</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; background: #f4f4f9; }
+        .box { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        textarea, select, button { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        button { background: #28a745; color: white; border: none; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Delivery Address & Payment</h2>
+        <p><b>Total Payable: ₹{{ total }}</b></p>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Delivery Address:</label>
+            <textarea name="address" rows="3" placeholder="Enter full street address, landmark, and pincode" required></textarea>
+
+            <label>Select Payment Method:</label>
+            <select name="payment" required>
+                <option value="UPI (GPay / PhonePe / Paytm)">UPI (GPay / PhonePe / Paytm)</option>
+                <option value="Credit / Debit Card">Credit / Debit Card</option>
+                <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+            </select>
+
+            <button type="submit">Confirm & Place Order</button>
+        </form>
+    </div>
+</body>
+</html>

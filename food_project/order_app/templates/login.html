@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Food Order System</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .box { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 320px; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        button { background: #ff5722; color: white; border: none; cursor: pointer; font-weight: bold; }
+        .error { color: red; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Food Express Login</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        {% if not otp_sent %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="send_otp">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="tel" name="phone" placeholder="Enter Phone Number" required>
+            <button type="submit">Send OTP</button>
+        </form>
+        {% else %}
+        <p>OTP sent to <b>{{ phone }}</b> (Check VS Code Terminal)</p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="verify_otp">
+            <input type="text" name="otp" placeholder="Enter 4-Digit OTP" required>
+            <button type="submit">Verify & Login</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
